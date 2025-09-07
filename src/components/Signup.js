@@ -37,7 +37,7 @@ const Signup = () => {
             : "bg-gray-400 cursor-not-allowed"
         }`}
     >
-        Get Started
+        Get Started!
       </button>
       <p className="text-orange-950">
         <Link to="/"> Already have an account?</Link>
