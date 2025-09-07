@@ -1,0 +1,50 @@
+/* .login-container{
+     background-color: #212121; 
+     padding: 14px; 
+     align-items: center; 
+     display: flex; 
+     flex-direction: column; 
+     color: white; 
+     width: 400px;  
+}
+body{
+    background-color:#D3ECCD ;
+      margin: 0;
+  height: 100vh;               
+  display: flex;              
+  justify-content: center;    
+  align-items: center;        
+  font-family: Arial, sans-serif;
+
+}
+
+.login-container input{
+    width: 280px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #5D688A ;
+    margin-bottom: 20px;
+}
+
+.login-container button{
+    width: 300px;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    background-color: #D3ECCD;
+}
+
+.login-container button:hover{
+    background-color: #b6cfb0;
+
+}
+
+.sign-up{
+    cursor: pointer;
+}
+
+.forgot-pass{
+    cursor: pointer;
+} */
