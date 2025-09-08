@@ -7,19 +7,21 @@ const [email, setEmail]= useState("");
 const [password, setPassword] = useState("");
 const [newPassword, setNewPassword] = useState("");
 const navigate = useNavigate();
+const [error, setError]=useState("");
 
 const checkValidations = () =>{
  if (!email.endsWith("@gmail.com")) {
-    return false;
+ setError("Enter a valid Gmail address.");
   }
-  if(password.length<4){
-    return false;
+  else if(password.length<4){
+ setError("Password must be at least 4 characters.");
   }
-  if(password !== newPassword){
-    return false;
-  }
-  
-  return true;
+  else if(password !== newPassword){
+ setError("Password doesn't match.");
+  }else {
+      setError("");
+      navigate("/");
+    }
 };
     return(
  <div className="bg-amber-50 flex flex-col gap-8 rounded-xl p-14 items-center">
@@ -42,14 +44,10 @@ const checkValidations = () =>{
           setNewPassword(e.target.value);
         }}
       />
-           <button disabled={!checkValidations()} className={`w-xs h-14 rounded-3xl text-white ${
-          checkValidations()
-            ? "bg-orange-950 hover:bg-orange-800 cursor-pointer"
-            : "bg-gray-400 cursor-not-allowed"
-      }`}
-      onClick={()=>{
-        navigate("/");
-      }}
+            {error && <p className="text-red-500">{error}</p>}
+
+           <button className="w-xs h-14 rounded-3xl text-white bg-orange-950 hover:bg-orange-800 cursor-pointer"
+      onClick={checkValidations}
       >
         Reset Password
       </button>

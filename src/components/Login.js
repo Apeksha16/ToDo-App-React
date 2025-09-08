@@ -2,19 +2,24 @@ import { Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Login = () => {
+
 const [email, setEmail]= useState("");
 const [password, setPassword] = useState("");
 const navigate = useNavigate();
+const [error, setError]=useState("");
+
 
 const checkValidations = () =>{
  if (!email.endsWith("@gmail.com")) {
-    return false;
-  }
-  if(password.length<4){
-    return false;
-  }
-  return true;
-};
+        setError("Enter a valid Gmail address.");
+  } else if (password.length < 4) {
+      setError("Password must be at least 4 characters.");
+    } else {
+      setError("");
+      navigate("/dashboard");
+    }
+  };
+
 
   return (
     <div className="bg-amber-50 flex flex-col gap-8 rounded-xl p-14 items-center">
@@ -34,15 +39,10 @@ const checkValidations = () =>{
           setPassword(e.target.value);
         }}
       />
+      {error && <p className="text-red-500">{error}</p>}
 
-    <button disabled={!checkValidations()} className={`w-xs h-14 rounded-3xl text-white ${
-          checkValidations()
-            ? "bg-orange-950 hover:bg-orange-800 cursor-pointer"
-            : "bg-gray-400 cursor-not-allowed"
-      }`}
-      onClick={()=>{
-        navigate("/dashboard");
-      }}
+    <button className="w-xs h-14 rounded-3xl text-white bg-orange-950 hover:bg-orange-800 cursor-pointer"
+      onClick={checkValidations}
       >
      Sign In
       </button>

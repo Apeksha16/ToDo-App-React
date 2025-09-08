@@ -5,22 +5,25 @@ const Signup = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+const [error, setError]=useState("");
   
   const navigate = useNavigate();
 
 
   const checkValidations = () => {
     if (fullName.length < 4) {
-      return false;
+ setError("Full Name should contain atleast 4 characters.");
     }
-    if (!email.endsWith("@gmail.com")) {
-      return false;
+    else if (!email.endsWith("@gmail.com")) {
+ setError("Enter a valid Gmail address.");
     }
-    if (password.length < 4) {
-      return false;
+    else if (password.length < 4) {
+ setError("Password must be at least 4 characters.");
+    }else {
+      setError("");
+      navigate("/");
     }
-    return true;
-  };
+};
 
   return (
     <div className="bg-amber-50 flex flex-col gap-8 rounded-xl p-14 items-center">
@@ -53,16 +56,11 @@ const Signup = () => {
           setPassword(e.target.value);
         }}
       />
+            {error && <p className="text-red-500">{error}</p>}
 
-   <button disabled={!checkValidations()} className={`w-xs h-14 rounded-3xl text-white ${
-          checkValidations()
-            ? "bg-orange-950 hover:bg-orange-800 cursor-pointer"
-            : "bg-gray-400 cursor-not-allowed"
-        }`}
-        onClick={()=>{
-            navigate("/");
-        }}
-    >
+    <button className="w-xs h-14 rounded-3xl text-white bg-orange-950 hover:bg-orange-800 cursor-pointer"
+      onClick={checkValidations}
+      >
         Get Started
      </button>
      
